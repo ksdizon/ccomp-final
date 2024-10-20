@@ -77,8 +77,8 @@
         // Bind parameters to the statement
         $stmt->bind_param(
             'ssssssssssss',
-            $complete_connection_info['date'],
-            $complete_connection_info['time'],
+            $complete_connection_info['connection_date'],
+            $complete_connection_info['connection_time'],
             $complete_connection_info['ip'],
             $complete_connection_info['isp'],
             $complete_connection_info['device'],
