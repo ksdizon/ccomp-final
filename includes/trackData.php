@@ -30,7 +30,7 @@
         $internet_details = getIpGeoInformation($user_ip);
     
         $complete_connection_info = array (
-            "connection_time" => $connection_date,
+            "connection_date" => $connection_date,
             "connection_time" => $connection_time,
             "visited_before" => hasUserConnectedBefore(),
             "ip" => $user_ip,
