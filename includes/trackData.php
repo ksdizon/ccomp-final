@@ -125,7 +125,7 @@
         $api_url = "http://ip-api.com/php/{query}?fields=status,continent,country,regionName,city,isp,proxy";
 
         // REMOVE LATER: 120.29.77.7
-        $response = file_get_contents(str_replace("{query}", "120.29.77.7", $api_url));
+        $response = file_get_contents(str_replace("{query}", $user_ip, $api_url));
 
         // convert the result to a php array
         return unserialize($response);
