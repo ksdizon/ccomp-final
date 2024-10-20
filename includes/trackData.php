@@ -22,17 +22,16 @@
         */
         date_default_timezone_set('Asia/Manila');
 
-        $current_date = date('Y-m-d');
-        $current_time = date('H:i:s');
+        $connection_date = date('Y-m-d');
+        $connection_time = date('H:i:s');
         $user_ip = getUserIp();
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
         $internet_details = getIpGeoInformation($user_ip);
     
-        echo $current_date;
         $complete_connection_info = array (
-            "date" => $current_date,
-            "time" => $current_time,
+            "connection_time" => $connection_date,
+            "connection_time" => $connection_time,
             "visited_before" => hasUserConnectedBefore(),
             "ip" => $user_ip,
             "isp" => $internet_details['isp'],
