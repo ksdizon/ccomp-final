@@ -46,29 +46,18 @@
 
     function uploadDataToDatabase($complete_connection_info) {
         // Establish database connection
-        $database_handler = connect_db(); // Ensure this function returns a valid mysqli connection
-    
-        if (!$database_handler) {
-            echo "Database connection failed.";
-            return;
-        }
-    
-        // Prepare an SQL statement to insert the data
-        $stmt = $database_handler->prepare("
-            INSERT INTO CONNECTIONS (
-                connection_date, connection_time, ip_address, isp, device, os, using_vpn, browser, continent, region_name, city, country
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ");
-    
-        if (!$stmt) {
-            echo "Statement preparation failed: " . $database_handler->error;
-            return;
-        }
-    
-    
+        $database_handler = connect_db();
+
+        $sql = $database_handler->query('
+            INSERT INTO CONNECTIONS (connection_date, connection_time, ip_address, isp, device, os, using_vpn, browser, continent, region_name, city, country)
+            VALUES (:connection_date, :connection_time, :ip_adress, :isp, :device, :os, :using_vpn, :browser, :continent, :region_name, :city, :country)
+        ');
+
+        $stmt = $database_handler->prepare($sql);
+        $stmt -> execute($data);
     
         // Close the statement and the connection
-        $database_handler->close();
+        $database_handler = null;
     }
 
     function getUserIp() {
