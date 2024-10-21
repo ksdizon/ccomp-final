@@ -1,7 +1,5 @@
 <?php
-    function getOperatingSystem() {
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-    
+    function getOperatingSystem($user_agent) {    
         // Match the operating systems
         $os_platform = "Unknown OS";
     
@@ -34,9 +32,7 @@
         return $os_platform;
     }
     
-    function getBrowser() {
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-
+    function getBrowser($user_agent) {
         // Match the browsers
         $browser = "Unknown Browser";
 
