@@ -1,6 +1,6 @@
 <?php
     include dirname(__FILE__) . '/../config/config.php';
-    connect_db();
+    
     function connect_db() {
         // Create 
         try {
