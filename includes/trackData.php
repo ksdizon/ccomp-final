@@ -1,15 +1,6 @@
 <?php
 /*
     Tracks the following user information
-        1. IP Address
-        2. Continent
-        3. Country
-        4. Region
-        5. City
-        6. ISP
-        7. Proxy
-        8. Operating System
-        9. Browser
 */
     include 'connectDb.php';
     include 'osBrowserCheck.php';
@@ -55,52 +46,29 @@
 
     function uploadDataToDatabase($complete_connection_info) {
         // Establish database connection
-        $conn = connect_db(); // Ensure this function returns a valid mysqli connection
+        $database_handler = connect_db(); // Ensure this function returns a valid mysqli connection
     
-        if (!$conn) {
+        if (!$database_handler) {
             echo "Database connection failed.";
             return;
         }
     
         // Prepare an SQL statement to insert the data
-        $stmt = $conn->prepare("
-            INSERT INTO connections (
+        $stmt = $database_handler->prepare("
+            INSERT INTO CONNECTIONS (
                 connection_date, connection_time, ip_address, isp, device, os, using_vpn, browser, continent, region_name, city, country
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
     
         if (!$stmt) {
-            echo "Statement preparation failed: " . $conn->error;
+            echo "Statement preparation failed: " . $database_handler->error;
             return;
         }
     
-        // Bind parameters to the statement
-        $stmt->bind_param(
-            'ssssssssssss',
-            $complete_connection_info['connection_date'],
-            $complete_connection_info['connection_time'],
-            $complete_connection_info['ip'],
-            $complete_connection_info['isp'],
-            $complete_connection_info['device'],
-            $complete_connection_info['os'],
-            $complete_connection_info['vpn_user'],
-            $complete_connection_info['browser'],
-            $complete_connection_info['continent'],
-            $complete_connection_info['region_name'],
-            $complete_connection_info['city'],
-            $complete_connection_info['country']
-        );
     
-        // Execute the statement and check for success
-        if ($stmt->execute()) {
-            echo "Data uploaded successfully!";
-        } else {
-            echo "Error uploading data: " . $stmt->error;
-        }
     
         // Close the statement and the connection
-        $stmt->close();
-        $conn->close();
+        $database_handler->close();
     }
 
     function getUserIp() {
