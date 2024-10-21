@@ -84,6 +84,10 @@
                 $os_platform = $value;
             }
         }
+
+        if ($os_platform == 'iPhone' || $os_platform == 'iPod' || $os_platform == 'iPad') {
+            $os_platform = 'iOS';
+        }
         
         return $os_platform;
     }
