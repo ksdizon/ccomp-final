@@ -19,15 +19,16 @@
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
         $internet_details = getIpGeoInformation($user_ip);
+        $device_info = getDeviceInfo($user_agent);
     
         $complete_connection_info = array (
             ":connection_date" => $connection_date,
             ":connection_time" => $connection_time,
             ":ip_address" => $user_ip,
             ":isp" => $internet_details['isp'],
-            ":device" => "device",
-            ":os" => getOperatingSystem($user_agent),
-            ":browser" => getBrowser($user_agent),
+            ":device" => $device_info['device'],
+            ":os" => $device_info['os'],
+            ":browser" => $device_info['browser'],
             ":continent" => $internet_details['continent'],
             ":region_name" => $internet_details['regionName'],
             ":city" => $internet_details['city'],
