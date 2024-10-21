@@ -21,23 +21,23 @@
         $internet_details = getIpGeoInformation($user_ip);
     
         $complete_connection_info = array (
-            "connection_date" => $connection_date,
-            "connection_time" => $connection_time,
-            "visited_before" => hasUserConnectedBefore(),
-            "ip_address" => $user_ip,
-            "isp" => $internet_details['isp'],
-            "device" => "device",
-            "os" => getOperatingSystem($user_agent),
-            "using_vpn" => $internet_details['proxy'],
-            "browser" => getBrowser($user_agent),
-            "continent" => $internet_details['continent'],
-            "region_name" => $internet_details['regionName'],
-            "city" => $internet_details['city'],
-            "country" => $internet_details['country']
+            ":connection_date" => $connection_date,
+            ":connection_time" => $connection_time,
+            ":ip_address" => $user_ip,
+            ":isp" => $internet_details['isp'],
+            ":device" => "device",
+            ":os" => getOperatingSystem($user_agent),
+            ":browser" => getBrowser($user_agent),
+            ":continent" => $internet_details['continent'],
+            ":region_name" => $internet_details['regionName'],
+            ":city" => $internet_details['city'],
+            ":country" => $internet_details['country']
         );
 
-        if ( $complete_connection_info["using_vpn"] == null) {
-            $complete_connection_info["using_vpn"] = "false";
+        if ($internet_details['proxy'] == null) {
+            $complete_connection_info["using_vpn"] = 0;
+        } else {
+            $complete_connection_info["using_vpn"] = 1;
         }
 
         uploadDataToDatabase($complete_connection_info);
@@ -48,15 +48,18 @@
         // Establish database connection
         $database_handler = connect_db();
 
-        $sql = $database_handler->query('
-            INSERT INTO CONNECTIONS (connection_date, connection_time, ip_address, isp, device, os, using_vpn, browser, continent, region_name, city, country)
-            VALUES (:connection_date, :connection_time, :ip_adress, :isp, :device, :os, :using_vpn, :browser, :continent, :region_name, :city, :country)
-        ');
+        $sql ="
+            INSERT INTO CONNECTIONS
+            (connection_date, connection_time, ip_address, isp, device, os, using_vpn, browser, continent, region_name, city, country)
+            VALUES
+            (:connection_date, :connection_time, :ip_address, :isp, :device, :os, :using_vpn, :browser, :continent, :region_name, :city, :country)
+        ";
 
         $stmt = $database_handler->prepare($sql);
         $stmt -> execute($complete_connection_info);
     
         // Close the statement and the connection
+        $stmt = null;
         $database_handler = null;
     }
 
