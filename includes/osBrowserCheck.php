@@ -1,4 +1,60 @@
 <?php
+    function getDevice($user_agent) {
+        $os = getOperatingSystem($user_agent);
+        $browser = getBrowser($user_agent);
+        
+        $computers = array(
+            'Windows 10',
+            'Windows 8.1',
+            'Windows 8',
+            'Windows 7',
+            'Windows Vista',
+            'Windows XP',
+            'Windows XP',
+            'Linux',
+            'Ubuntu'
+        );
+
+        $mac = array(
+            'Mac OS X',
+            'Mac OS 9'
+        );
+
+        $mobiles = array(
+            'Android',
+            'BlackBerry'
+        );
+
+        $smart_devices = 'WebOS';
+        $iPhone = 'iPhone';
+        $iPod = 'iPod';
+        $iPad = 'iPad';
+
+        $device = 'Unknown';
+
+        if (in_array($os, $computers)) {
+            $device = 'Computer';
+        } else if (in_array($os, $mac)) {
+            $device = 'Mac';
+        } else if (in_array($os, $mobiles)) {
+            $device = 'Mobile';
+        } else if ($os == 'WebOS') {
+            $device = 'Smart Device';
+        } else if ($os == 'iPhone') {
+            $device = 'iPhone';
+        } else if ($os == 'iPod') {
+            $device = 'iPod';
+        } else if ($os == 'iPad') {
+            $device = 'iPad';
+        }
+
+        return array(
+            'os' => $os,
+            'browser' => $browser,
+            'device' => $device
+        );
+    }
+
     function getOperatingSystem($user_agent) {    
         // Match the operating systems
         $os_platform = "Unknown OS";
@@ -20,7 +76,7 @@
             '/ipad/i'              => 'iPad',
             '/android/i'           => 'Android',
             '/blackberry/i'        => 'BlackBerry',
-            '/webos/i'             => 'Mobile',
+            '/webos/i'             => 'WebOS',
         ];
     
         foreach ($os_array as $regex => $value) {
