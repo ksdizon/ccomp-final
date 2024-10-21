@@ -54,7 +54,7 @@
         ');
 
         $stmt = $database_handler->prepare($sql);
-        $stmt -> execute($data);
+        $stmt -> execute($complete_connection_info);
     
         // Close the statement and the connection
         $database_handler = null;
