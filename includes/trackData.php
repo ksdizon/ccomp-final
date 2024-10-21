@@ -36,8 +36,8 @@
             "country" => $internet_details['country']
         );
 
-        if ( $complete_connection_info["vpn_user"] == null) {
-            $complete_connection_info["vpn_user"] = "false";
+        if ( $complete_connection_info["using_vpn"] == null) {
+            $complete_connection_info["using_vpn"] = "false";
         }
 
         uploadDataToDatabase($complete_connection_info);
@@ -81,7 +81,11 @@
         */
         $api_url = "http://ip-api.com/php/{query}?fields=status,continent,country,regionName,city,isp,proxy";
 
-        // REMOVE LATER: 120.29.77.7
+        // REMOVE LATER
+        if ($user_ip == '127.0.0.1') {
+            $user_ip = '120.29.77.7';
+        }
+
         $response = file_get_contents(str_replace("{query}", $user_ip, $api_url));
 
         // convert the result to a php array
