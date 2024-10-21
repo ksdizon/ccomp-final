@@ -1,5 +1,5 @@
 <?php
-    function getDevice($user_agent) {
+    function getDeviceInfo($user_agent) {
         $os = getOperatingSystem($user_agent);
         $browser = getBrowser($user_agent);
         
