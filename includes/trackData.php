@@ -42,7 +42,7 @@
         }
 
         uploadDataToDatabase($complete_connection_info);
-        print_r($complete_connection_info);
+        //print_r($complete_connection_info);
     }
 
     function uploadDataToDatabase($complete_connection_info) {
