@@ -1,0 +1,141 @@
+/* General Body Styling */
+body {
+    background-color: #454343;
+    color: #e1e1e1;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dashboard Container */
+.container {
+    padding: 2rem;
+    background: #1e1e1e;
+    min-height: 100vh;
+}
+
+/* Logout Button */
+.logout-button {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1.5rem;
+    background: rgba(231, 76, 60, 0.8);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: 'myfont', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.logout-button:hover {
+    background: rgba(231, 76, 60, 1);
+    transform: translateY(-2px);
+}
+
+/* Table Container */
+.table-container {
+    background: rgba(26, 26, 26, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    margin-top: 2rem;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Crimson Text", serif;
+}
+
+/* Table Header */
+thead {
+    background: #2a2a2a;
+    border-bottom: 2px solid #f1c40f;
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-family: 'myfont-bold', serif;
+    color: #f1c40f;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+/* Table Body */
+tbody tr {
+    border-bottom: 1px solid rgba(239, 191, 4, 0.1);
+    background: rgba(42, 42, 42, 0.6);
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(48, 48, 48, 0.7);
+}
+
+tbody tr:hover {
+    background: rgba(239, 191, 4, 0.2); 
+}
+
+td {
+    padding: 0.75rem 1rem;
+    color: #e1e1e1;
+}
+
+/* VPN Status */
+.status-vpn {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.status-vpn.active {
+    background: rgba(39, 174, 96, 0.3);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.5);
+}
+
+.status-vpn.inactive {
+    background: rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.5);
+}
+
+/* Scrollbar Styling */
+.table-container::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #f1c40f;
+    border-radius: 4px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    td, th {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .logout-button {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+}

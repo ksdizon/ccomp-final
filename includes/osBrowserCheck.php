@@ -30,8 +30,6 @@
         $iPod = 'iPod';
         $iPad = 'iPad';
 
-        $device = 'Unknown';
-
         if (in_array($os, $computers)) {
             $device = 'Computer';
         } else if (in_array($os, $mac)) {
@@ -46,6 +44,8 @@
             $device = 'iPod';
         } else if ($os == 'iPad') {
             $device = 'iPad';
+        } else {
+            $device = 'Unknown';
         }
 
         return array(
